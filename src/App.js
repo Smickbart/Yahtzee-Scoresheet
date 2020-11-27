@@ -9,121 +9,7 @@ function Options(props) {
   )
 }
 
-function Chance(props) {  
-  const options = [];
-  for(let i = 0; i < 31; i++) {
-    if(i === 1 || i === 2 || i === 3 || i === 4) {
-      continue;
-    }
-    options.push(<Options score={i}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function Yahtzee(props) {
-  const options = [];
-  for(let i = 0; i < 2; i++) {
-    options.push(<Options score={i*50}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function LargeStraight(props) {
-  const options = [];
-  for(let i = 0; i < 2; i++) {
-    options.push(<Options score={i*40}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function SmallStraight(props) {
-  const options = [];
-  for(let i = 0; i < 2; i++) {
-    options.push(<Options score={i*30}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function FullHouse(props) {
-  const options = [];
-  for(let i = 0; i < 2; i++) {
-    options.push(<Options score={i*25}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function FourOfKind(props) {
-  const options = [];
-  for(let i = 0; i < 31; i++) {
-    if(i === 1 || i === 2 || i === 3 || i === 4) {
-      continue;
-    }
-    options.push(<Options score={i}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function ThreeOfKind(props) {
-  const options = [];
-  for(let i = 0; i < 31; i++) {
-    if(i === 1 || i === 2 || i === 3 || i === 4) {
-      continue;
-    }
-    options.push(<Options score={i}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select className="table__score">
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function Subtotal(props) {
+function UpperBonus(props) {
   return (
     <td className="table__cell">
       <p>{props.score}</p>
@@ -131,117 +17,42 @@ function Subtotal(props) {
   )
 }
 
-function Sixes(props) {
-  const options = [];
-  const index = props.index;
-  for(let i = 0; i < 6; i++) {
-    options.push(<Options score={i*6}/>)
-  }
+function Totals(props) {
   return (
     <td className="table__cell">
-      <select 
-        className="table__score"
-        name="threes"
-        onChange={(e) => props.onChange(e, index)}
-      >
-        <option></option>
-        {options}
-      </select>
+      <p>{props.score}</p>
     </td>
   )
 }
 
-function Fives(props) {
+function Scores(props) {
   const options = [];
   const index = props.index;
-  for(let i = 0; i < 6; i++) {
-    options.push(<Options score={i*5}/>)
+  const scoreNumber = props.scoreNumber;
+  const scoreMultiplier = Number(props.scoreMultiplier);
+  
+  if(scoreMultiplier > 50) {
+    for(let i = 1; i < scoreNumber; i++) {
+      options.push(<Options score={i*scoreMultiplier}/>)
+    }
+  } else if(scoreNumber > 6) {
+    for(let i = 0; i < scoreNumber; i++) {
+      if(i === 1 || i === 2 || i === 3 || i === 4) {
+        continue;
+      }
+      options.push(<Options score={i}/>)
+    }
+  } else {
+    for(let i = 0; i < scoreNumber; i++) {
+      options.push(<Options score={i*scoreMultiplier}/>);
+    }
   }
-  return (
-    <td className="table__cell">
-      <select 
-        className="table__score"
-        name="threes"
-        onChange={(e) => props.onChange(e, index)}
-      >
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
 
-function Fours(props) {
-  const options = [];
-  const index = props.index;
-  for(let i = 0; i < 6; i++) {
-    options.push(<Options score={i*4}/>)
-  }
   return (
     <td className="table__cell">
       <select 
         className="table__score"
-        name="threes"
-        onChange={(e) => props.onChange(e, index)}
-      >
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function Threes(props) {
-  const options = [];
-  const index = props.index;
-  for(let i = 0; i < 6; i++) {
-    options.push(<Options score={i*3}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select 
-        className="table__score"
-        name="threes"
-        onChange={(e) => props.onChange(e, index)}
-      >
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function Twos(props) {
-  const options = [];
-  const index = props.index;
-  for(let i = 0; i < 6; i++) {
-    options.push(<Options score={i*2}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select 
-        className="table__score"
-        name="twos"
-        onChange={(e) => props.onChange(e, index)}
-        >
-        <option></option>
-        {options}
-      </select>
-    </td>
-  )
-}
-
-function Ones(props) {
-  const options = [];
-  const index = props.index;
-  for(let i = 0; i < 6; i++) {
-    options.push(<Options score={i}/>)
-  }
-  return (
-    <td className="table__cell">
-      <select 
-        className="table__score"
-        name="ones"
+        name={props.name}
         onChange={(e) => props.onChange(e, index)}
         >
         <option></option>
@@ -297,74 +108,129 @@ class Table extends React.Component {
           onChange={(e, index) => this.props.onChange(e, index)}
         />);
         onesRow.push(
-        <Ones 
+        <Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="ones"
+          scoreNumber={6}
+          scoreMultiplier={1}
         />);
-        twosRow.push(<Twos 
+        twosRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="twos"
+          scoreNumber={6}
+          scoreMultiplier={2}
         />);
-        threesRow.push(<Threes 
+        threesRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="threes"
+          scoreNumber={6}
+          scoreMultiplier={3}
         />);
-        foursRow.push(<Fours 
+        foursRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="fours"
+          scoreNumber={6}
+          scoreMultiplier={4}
         />);
-        fivesRow.push(<Fives 
+        fivesRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="fives"
+          scoreNumber={6}
+          scoreMultiplier={5}
         />);
-        sixesRow.push(<Sixes 
+        sixesRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="sixes"
+          scoreNumber={6}
+          scoreMultiplier={6}
         />);
-        subtotalRow.push(<Subtotal 
+        subtotalRow.push(<Totals 
           key={player.id}
           score={player.score.subtotal}
+        />);
+        bonusRow.push(<UpperBonus
+          key={player.id}
+          score={player.score.upperBonus}
         />)
-        threeOfKindRow.push(<ThreeOfKind 
+        threeOfKindRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="3oak"
+          scoreNumber={31}
+          scoreMultiplier={1}
         />);
-        fourOfKindRow.push(<FourOfKind 
+        fourOfKindRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="4oak"
+          scoreNumber={31}
+          scoreMultiplier={1}
         />);
-        fullHouseRow.push(<FullHouse 
+        fullHouseRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="fullHouse"
+          scoreNumber={2}
+          scoreMultiplier={25}
         />);
-        smallStraightRow.push(<SmallStraight 
+        smallStraightRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="smlStraight"
+          scoreNumber={2}
+          scoreMultiplier={30}
         />);
-        largeStraightRow.push(<LargeStraight 
+        largeStraightRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="lgStraight"
+          scoreNumber={2}
+          scoreMultiplier={40}
         />);
-        yahtzeeRow.push(<Yahtzee 
+        yahtzeeRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="yahtzee"
+          scoreNumber={2}
+          scoreMultiplier={50}
         />);
-        chanceRow.push(<Chance 
+        chanceRow.push(<Scores 
           key={player.id}
           index={i}
           onChange={(e, index) => this.props.onChange(e, index)}
+          name="chance"
+          scoreNumber={31}
+          scoreMultiplier={1}
+        />);
+        yahtzeeBonusRow.push(<Scores 
+          key={player.id}
+          index={i}
+          onChange={(e, index) => this.props.onChange(e, index)}
+          name="yahtzeeBonus"
+          scoreNumber={4}
+          scoreMultiplier={100}
+        />);
+        totalRow.push(<Totals 
+          key={player.id}
+          score={player.score.total}
         />);
     });
 
@@ -470,8 +336,7 @@ class App extends React.Component {
           upperSection: Array(6).fill(0), // These are the scores for ones through sixes.
           subtotal: null,
           upperBonus: null,
-          lowerSection: Array(7).fill(0), // scores for 3oak, 4oak, fh, sm.str, lg.str, ytz & chc.
-          yahtzeeBonus: null,
+          lowerSection: Array(8).fill(0), // scores for 3oak, 4oak, fh, sm.str, lg.str, ytz & chc.
           total: null
         },
         id: "player#" + (i+1)
@@ -487,6 +352,7 @@ class App extends React.Component {
     const name = e.target.name;
     const i = index;
     let upperSection = players[i].score.upperSection;
+    let lowerSection = players[i].score.lowerSection;
 
     switch(name) {
       case "name":
@@ -510,12 +376,38 @@ class App extends React.Component {
       case "sixes":
         upperSection[5] = Number(value);
         break;
+      case "3oak":
+        lowerSection[0] = Number(value);
+        break;
+      case "4oak":
+        lowerSection[1] = Number(value);
+        break;
+      case "fullHouse":
+        lowerSection[2] = Number(value);
+        break;
+      case "smlStraight":
+        lowerSection[3] = Number(value);
+        break;
+      case "lgStraight":
+        lowerSection[4] = Number(value);
+        break;
+      case "yahtzee":
+        lowerSection[5] = Number(value);
+        break;
+      case "chance":
+        lowerSection[6] = Number(value);
+        break;
+      case "yahtzeeBonus":
+        lowerSection[7] = Number(value);
+        break;
     }
 
     players[i].score.subtotal = upperSection.reduce((t, n) => t + n);
 
+    players[i].score.subtotal >= 63 ? players[i].score.upperBonus = 35 : players[i].score.upperBonus = 0;
+    players[i].score.total = players[i].score.subtotal + players[i].score.upperBonus + lowerSection.reduce((t, n) => t + n)
+
     this.setState(state => state.players = players);
-    console.log(this.state.players);
   }
   
 
