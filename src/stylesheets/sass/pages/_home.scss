@@ -1,0 +1,45 @@
+.scoresheet {
+  margin-left: -1px;
+
+  &__heading {
+    position: absolute;
+    left: 0;
+    top: auto;
+    width: 11rem;
+    height: 3.5rem;
+    margin-left: 1rem;
+
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    padding-top: 1.25rem;
+
+    &--row {
+      border-top: none;
+    }
+
+  }
+
+  &__name {
+    width: 8rem;
+  }
+
+  &__cell {
+    width: 10rem;
+    height: 3.5rem;
+    text-align: center;
+    font-size: 2rem;
+
+    &--key {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.button-container {
+  padding-bottom: 1rem;
+}
+
+.table-container {
+  overflow-x: scroll;
+  margin-left: 11rem;
+}

@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1rem;
+}
+
+button {
+    font-size: 1rem;
+    font-family: inherit;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
