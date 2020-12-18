@@ -1,20 +1,23 @@
 .button {
-  border: 1px solid #4d4d4d;
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: .5rem;
+  padding: .8rem;
 
   font-size: 1.3rem;
   text-transform: uppercase;
-  
-  box-shadow: .2rem .2rem .3rem;
+  color: $font-color-light;
+  font-weight: bolder;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
 
   &:active {
-    box-shadow: .1rem .1rem .3rem;
-    transform: translateY(1px);
+    transform: scale(.95);
   }
 
   &--green {
-    background-color: #33cc33;
+    background-color: #209c20;
   }
 }
 

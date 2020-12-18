@@ -165,8 +165,8 @@ class Table extends Component {
     return (
         <table className="scoresheet">
           <thead>
-            <tr className="scoresheet__row">
-              <th className="scoresheet__heading">Players</th>
+            <tr className="scoresheet__row names">
+              <th className="scoresheet__heading names">Players</th>
               {nameRow}
             </tr>
           </thead>
@@ -216,11 +216,11 @@ class Table extends Component {
               {fullHouseRow}
             </tr>
             <tr className="scoresheet__row lower">
-              <th className="scoresheet__heading scoresheet__heading--row lower">sm. straight</th>
+              <th className="scoresheet__heading scoresheet__heading--row lower">s.straight</th>
               {smallStraightRow}
             </tr>
             <tr className="scoresheet__row lower">
-              <th className="scoresheet__heading scoresheet__heading--row lower">lg. straight</th>
+              <th className="scoresheet__heading scoresheet__heading--row lower">l.straight</th>
               {largeStraightRow}
             </tr>
             <tr className="scoresheet__row lower">

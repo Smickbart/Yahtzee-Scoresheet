@@ -1,0 +1,14 @@
+{
+    "liveServer.settings.port": 5501,
+    "liveSassCompile.settings.formats": [
+
+
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "src/css"
+        }
+    ],
+    "liveSassCompile.settings.includeItems": [],
+    "liveSassCompile.settings.generateMap": false
+}

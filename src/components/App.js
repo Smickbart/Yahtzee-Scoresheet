@@ -29,6 +29,9 @@ class App extends React.Component {
       });
     
     this.setState(state => state.players = players);
+
+    document.querySelector(".table-container").classList.remove("hidden");
+    document.querySelector(".button--green").innerHTML = "add player";
   }
 
   handleChange(e, index) {
@@ -101,9 +104,9 @@ class App extends React.Component {
       <div className="main-container">
         <h1 className="heading--main">Yahtzee Scoresheet</h1>
         <div className="button-container">
-          <button className="button button--green" onClick={this.addPlayers}>add player</button>
+          <button className="button button--green" onClick={this.addPlayers}>start game</button>
         </div>
-        <div className="table-container">
+        <div className="table-container hidden">
           <Table
             players={players}
             onChange={(e, index) => this.handleChange(e, index)}

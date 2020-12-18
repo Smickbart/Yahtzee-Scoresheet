@@ -1,11 +1,19 @@
+.names {
+  background-color: $color-blue-dark;
+}
+
 .upper {
-  background-color: rgba($color-blue, .4);
+  background-color: $color-blue;
 }
 
 .lower {
-  background-color: rgba($color-red, .4);
+  background-color: $color-red;
 }
 
 .total {
-  background-color: rgba($color-purple, .4);
+  background-color: $color-purple;
+}
+
+.hidden {
+  display: none;
 }

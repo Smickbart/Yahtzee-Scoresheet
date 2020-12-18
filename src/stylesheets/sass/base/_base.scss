@@ -12,8 +12,9 @@ html {
 
 body {
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 1rem;
+    background-color: $background-color;
 }
 
 button {
