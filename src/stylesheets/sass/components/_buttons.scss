@@ -1,6 +1,7 @@
-.button {
+.btn {
   border-radius: .5rem;
   padding: .8rem;
+  margin: 0 .5rem;
 
   font-size: 1.3rem;
   text-transform: uppercase;
@@ -17,7 +18,15 @@
   }
 
   &--green {
-    background-color: #209c20;
+    background-color: $color-green;
+  }
+
+  &--yellow {
+    background-color: $color-yellow;
+  }
+
+  &--red {
+    background-color: $color-red;
   }
 }
 

@@ -2,8 +2,13 @@ $color-blue: #2e45a3;
 $color-blue-dark: #003d66;
 $color-red: #bd2a33;
 $color-purple: #5e2458;
+$color-green: #448214;
+$color-yellow: #D6AA0F;
 
 $font-color-light: #f2f2f2;
 $font-color-default: #333;
 
 $background-color: #eaeffa;
+
+$cell-height: calc((100vh - 2rem)*.8 / 18);
+$cell-width: calc((100vw - 2rem) / 3);

@@ -24,7 +24,6 @@ button {
     background-color: rgba(0, 0, 0, 0);
 }
 
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+table {
+    border-spacing: 2px;
 }

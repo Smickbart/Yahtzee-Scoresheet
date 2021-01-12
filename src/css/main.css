@@ -26,9 +26,8 @@ button {
   background-color: rgba(0, 0, 0, 0);
 }
 
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+table {
+  border-spacing: 2px;
 }
 
 .heading--main {
@@ -38,28 +37,37 @@ table, th, td {
   padding: 2rem 0;
 }
 
-.button {
+.btn {
   border-radius: .5rem;
   padding: .8rem;
+  margin: 0 .5rem;
   font-size: 1.3rem;
   text-transform: uppercase;
   color: #f2f2f2;
   font-weight: bolder;
 }
 
-.button:hover {
+.btn:hover {
   cursor: pointer;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
 
-.button:active {
+.btn:active {
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
 }
 
-.button--green {
-  background-color: #209c20;
+.btn--green {
+  background-color: #448214;
+}
+
+.btn--yellow {
+  background-color: #D6AA0F;
+}
+
+.btn--red {
+  background-color: #bd2a33;
 }
 
 .scoresheet {
@@ -84,7 +92,9 @@ table, th, td {
 }
 
 .scoresheet__name {
+  font-size: 1.2rem;
   width: 8rem;
+  margin: 0 1rem;
 }
 
 .scoresheet__cell {
@@ -105,6 +115,7 @@ table, th, td {
 
 .table-container {
   overflow-x: scroll;
+  height: 80%;
   margin-left: 11rem;
 }
 

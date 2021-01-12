@@ -7,6 +7,7 @@ class App extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.addPlayers = this.addPlayers.bind(this);
+    this.restart = this.restart.bind(this);
     this.state = {
       players: []
     }
@@ -31,7 +32,18 @@ class App extends React.Component {
     this.setState(state => state.players = players);
 
     document.querySelector(".table-container").classList.remove("hidden");
-    document.querySelector(".button--green").innerHTML = "add player";
+    document.querySelector(".btn--green").innerHTML = "add player";
+  }
+
+  restart(e) {
+    const players = this.state.players.slice();
+    const allPlayers = players.length;
+
+    document.querySelector(".table-container").classList.add("hidden");
+    document.querySelector(".btn--green").innerHTML = "new game";
+    players.splice(0, allPlayers);
+
+    this.setState(state => state.players = players);
   }
 
   handleChange(e, index) {
@@ -104,7 +116,8 @@ class App extends React.Component {
       <div className="main-container">
         <h1 className="heading--main">Yahtzee Scoresheet</h1>
         <div className="button-container">
-          <button className="button button--green" onClick={this.addPlayers}>start game</button>
+          <button className="btn btn--green" onClick={this.addPlayers}>newd game</button>
+          <button className="btn btn--yellow" onClick={this.restart}>Reset Game</button>
         </div>
         <div className="table-container hidden">
           <Table
