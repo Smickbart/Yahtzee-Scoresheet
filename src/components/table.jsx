@@ -33,54 +33,54 @@ class Table extends Component {
           key={player.id}
           name={player.name}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
+          // onClick={(e, index) => this.props.onClick(e, index)}
         />);
         onesRow.push(
         <Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="ones"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="ones"
           scoreNumber={6}
           scoreMultiplier={1}
         />);
         twosRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="twos"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="twos"
           scoreNumber={6}
           scoreMultiplier={2}
         />);
         threesRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="threes"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="threes"
           scoreNumber={6}
           scoreMultiplier={3}
         />);
         foursRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="fours"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="fours"
           scoreNumber={6}
           scoreMultiplier={4}
         />);
         fivesRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="fives"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="fives"
           scoreNumber={6}
           scoreMultiplier={5}
         />);
         sixesRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="sixes"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="sixes"
           scoreNumber={6}
           scoreMultiplier={6}
         />);
@@ -95,64 +95,64 @@ class Table extends Component {
         threeOfKindRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="3oak"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="3oak"
           scoreNumber={31}
           scoreMultiplier={1}
         />);
         fourOfKindRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="4oak"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="4oak"
           scoreNumber={31}
           scoreMultiplier={1}
         />);
         fullHouseRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="fullHouse"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="fullHouse"
           scoreNumber={2}
           scoreMultiplier={25}
         />);
         smallStraightRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="smlStraight"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="smlStraight"
           scoreNumber={2}
           scoreMultiplier={30}
         />);
         largeStraightRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="lgStraight"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="lgStraight"
           scoreNumber={2}
           scoreMultiplier={40}
         />);
         yahtzeeRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="yahtzee"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="yahtzee"
           scoreNumber={2}
           scoreMultiplier={50}
         />);
         chanceRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="chance"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="chance"
           scoreNumber={31}
           scoreMultiplier={1}
         />);
         yahtzeeBonusRow.push(<Scores 
           key={player.id}
           index={i}
-          onChange={(e, index) => this.props.onChange(e, index)}
-          name="yahtzeeBonus"
+          onClick={(e, index) => this.props.onClick(e, index)}
+          headers="yahtzeeBonus"
           scoreNumber={4}
           scoreMultiplier={100}
         />);
@@ -195,12 +195,12 @@ class Table extends Component {
               <th className="scoresheet__heading scoresheet__heading--row upper">Sixes</th>
               {sixesRow}
             </tr>
-            <tr className="scoresheet__row upper">
-              <th className="scoresheet__heading scoresheet__heading--row upper">subtotal</th>
+            <tr className="scoresheet__row total">
+              <th className="scoresheet__heading scoresheet__heading--row total">subtotal</th>
               {subtotalRow}
             </tr>
-            <tr className="scoresheet__row upper">
-              <th className="scoresheet__heading scoresheet__heading--row upper">bonus</th>
+            <tr className="scoresheet__row total">
+              <th className="scoresheet__heading scoresheet__heading--row total">bonus</th>
               {bonusRow}
             </tr>
             <tr className="scoresheet__row lower">

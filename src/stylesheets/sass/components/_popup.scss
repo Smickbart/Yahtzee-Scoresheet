@@ -1,0 +1,56 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba($color-blue-dark, .5);
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-white;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 3px;
+  }
+
+  &__scores {
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-size: 3rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__submit {
+    display: block;
+    min-width: 10rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+
+  &__radio {
+    display: none;
+
+    &:checked+.btn__score {
+      background-color: $color-blue-dark;
+      color: $font-color-light;
+    }
+  }
+}

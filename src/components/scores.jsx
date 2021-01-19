@@ -1,14 +1,13 @@
-import React from "react";
+import React, { Component } from 'react';
 
-function Scores(props) {
-  const options = [];
-  const index = props.index;
-  const scoreNumber = props.scoreNumber;
-  const scoreMultiplier = Number(props.scoreMultiplier);
+class scores extends Component {
+  render() {
+    const { index, scoreNumber, scoreMultiplier, headers } = this.props;
 
-  return (
-    <td className="scoresheet__cell"></td>
-  )
+    return (
+      <td className="scoresheet__cell" onClick={this.props.onClick} headers={headers}></td>
+    );
+  }
 }
 
-export default Scores;
+export default scores;

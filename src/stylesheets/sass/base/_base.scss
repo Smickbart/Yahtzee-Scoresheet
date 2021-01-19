@@ -25,5 +25,14 @@ button {
 }
 
 table {
-    border-spacing: 2px;
+    border-spacing: 0px;
+}
+
+th {
+    border: 1px solid $color-white;
+}
+
+td {
+    border: 1px solid $color-white;
+    border-top: none;
 }

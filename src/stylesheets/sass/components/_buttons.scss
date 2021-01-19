@@ -1,4 +1,5 @@
 .btn {
+  display: inline-block;
   border-radius: .5rem;
   padding: .8rem;
   margin: 0 .5rem;
@@ -17,6 +18,19 @@
     transform: scale(.95);
   }
 
+  &__score {
+    color: $font-color-default;
+    text-align: center;
+    width: 4rem;
+    height: 4rem;
+    border: 3px solid $color-blue-dark;
+    margin-bottom: .5rem;
+  }
+
+  &--default {
+    background-color: $color-blue;
+  }
+
   &--green {
     background-color: $color-green;
   }
@@ -27,6 +41,13 @@
 
   &--red {
     background-color: $color-red;
+  }
+
+  &--submit {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 10rem;
   }
 }
 

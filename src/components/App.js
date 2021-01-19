@@ -1,15 +1,20 @@
 import React from 'react';
 
 import Table from "./table";
+import Popup from "./popup";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.addPlayers = this.addPlayers.bind(this);
     this.restart = this.restart.bind(this);
     this.state = {
-      players: []
+      players: [],
+      currentPlayer: {},
+      score: "",
+      scoreNumber: 0,
+      scoreMultiplier: 1
     }
   }
 
@@ -46,85 +51,187 @@ class App extends React.Component {
     this.setState(state => state.players = players);
   }
 
-  handleChange(e, index) {
-    const players = this.state.players.slice();
-    const value = e.target.value;
-    const name = e.target.name;
-    const i = index;
-    let upperSection = players[i].score.upperSection;
-    let lowerSection = players[i].score.lowerSection;
+  handleChange = (e) => {
+    const score = e.target.value;
+    
+    this.setState(state => state.score = score)
+  }
 
-    switch(name) {
-      case "name":
-        players[i].name = value;
-        break;
-      case "ones":
-        upperSection[0] = Number(value);
-        break;
-      case "twos":
-        upperSection[1] = Number(value);
-        break;
-      case "threes":
-        upperSection[2] = Number(value);
-        break;
-      case "fours":
-        upperSection[3] = Number(value);
-        break;
-      case "fives":
-        upperSection[4] = Number(value);
-        break;
-      case "sixes":
-        upperSection[5] = Number(value);
-        break;
-      case "3oak":
-        lowerSection[0] = Number(value);
-        break;
-      case "4oak":
-        lowerSection[1] = Number(value);
-        break;
-      case "fullHouse":
-        lowerSection[2] = Number(value);
-        break;
-      case "smlStraight":
-        lowerSection[3] = Number(value);
-        break;
-      case "lgStraight":
-        lowerSection[4] = Number(value);
-        break;
-      case "yahtzee":
-        lowerSection[5] = Number(value);
-        break;
-      case "chance":
-        lowerSection[6] = Number(value);
-        break;
-      case "yahtzeeBonus":
-        lowerSection[7] = Number(value);
-        break;
+  handleClick(e, index) {
+    const players = this.state.players.slice();
+    const currentPlayer = this.state.currentPlayer;
+    const i = index;
+    const name = e.target.headers;
+    const id = e.target.id;
+    const popup = document.querySelector(".popup").classList;
+    const score = this.state.score;
+    let scoreNumber = 0;
+    let scoreMultiplier = 1;
+
+    console.log(i);
+
+    if(i) {
+      this.setState(state => state.currentPlayer = players[i]);
     }
 
-    players[i].score.subtotal = upperSection.reduce((t, n) => t + n);
+    if(id === "close") {
+      popup.add("hidden");
+    }
+    
+    if(id !== "submit") {
+      switch(name) {
+        // case "name":
+        //   players[i].name = value;
+        //   break;
+        case "ones":
+          scoreNumber = 6;
+          break;
+        case "twos":
+          scoreNumber = 6;
+          scoreMultiplier = 2;
+          break;
+        case "threes":
+          scoreNumber = 6;
+          scoreMultiplier = 3;
+          break;
+        case "fours":
+          scoreNumber = 6;
+          scoreMultiplier = 4;
+          break;
+        case "fives":
+          scoreNumber = 6;
+          scoreMultiplier = 5;
+          break;
+        case "sixes":
+          scoreNumber = 6;
+          scoreMultiplier = 6;
+          break;
+        case "3oak":
+          scoreNumber = 31;
+          break;
+        case "4oak":
+          scoreNumber = 31;
+          break;
+        case "fullHouse":
+          scoreNumber = 2;
+          scoreMultiplier = 25;
+          break;
+        case "smlStraight":
+          scoreNumber = 2;
+          scoreMultiplier = 30;
+          break;
+        case "lgStraight":
+          scoreNumber = 2;
+          scoreMultiplier = 40;
+          break;
+        case "yahtzee":
+          scoreNumber = 2;
+          scoreMultiplier = 50;
+          break;
+        case "chance":
+          scoreNumber = 31;
+          break;
+        case "yahtzeeBonus":
+          scoreNumber = 3;
+          scoreMultiplier = 100;
+          break;
+      }
 
-    players[i].score.subtotal >= 63 ? players[i].score.upperBonus = 35 : players[i].score.upperBonus = 0;
-    players[i].score.total = players[i].score.subtotal + players[i].score.upperBonus + lowerSection.reduce((t, n) => t + n)
+      this.setState({
+        scoreNumber: scoreNumber,
+        scoreMulitplier: scoreMultiplier
+      });
+    }
+    
+    if(id !== "close") {
+      popup.remove("hidden");
+    }
 
-    this.setState(state => state.players = players);
+    if(id === "submit") {
+      switch(name) {
+        // case "name":
+        //   players[i].name = value;
+        //   break;
+        case "ones":
+          currentPlayer.score.upperSection[0] = Number(score);
+          break;
+        case "twos":
+          currentPlayer.score.upperSection[1] = Number(score);
+          break;
+        case "threes":
+          currentPlayer.score.upperSection[2] = Number(score);
+          break;
+        case "fours":
+          currentPlayer.score.upperSection[3] = Number(score);
+          break;
+        case "fives":
+          currentPlayer.score.upperSection[4] = Number(score);
+          break;
+        case "sixes":
+          currentPlayer.score.upperSection[5] = Number(score);
+          break;
+        case "3oak":
+          currentPlayer.score.lowerSection[0] = Number(score);
+          break;
+        case "4oak":
+          currentPlayer.score.lowerSection[1] = Number(score);
+          break;
+        case "fullHouse":
+          currentPlayer.score.lowerSection[2] = Number(score);
+          break;
+        case "smlStraight":
+          currentPlayer.score.lowerSection[3] = Number(score);
+          break;
+        case "lgStraight":
+          currentPlayer.score.lowerSection[4] = Number(score);
+          break;
+        case "yahtzee":
+          currentPlayer.score.lowerSection[5] = Number(score);
+          break;
+        case "chance":
+          currentPlayer.score.lowerSection[6] = Number(score);
+          break;
+        case "yahtzeeBonus":
+          currentPlayer.score.lowerSection[7] = Number(score);
+          break;
+      }
+
+      // let repIndex = players.findIndex(player => player.id === currentPlayer.id);
+      // players.splice(repIndex, 1, currentPlayer);
+      // this.setState(state => state.players = players);
+
+      // console.log(currentPlayer.score.upperSection[0]);
+    }
+
+    // players[i].score.subtotal = upperSection.reduce((t, n) => t + n);
+
+    // players[i].score.subtotal >= 63 ? players[i].score.upperBonus = 35 : players[i].score.upperBonus = 0;
+    // players[i].score.total = players[i].score.subtotal + players[i].score.upperBonus + lowerSection.reduce((t, n) => t + n)
+
+    // this.setState(state => state.players = players);
   }  
 
   render() {
     const players = this.state.players;
     return (
-      <div className="main-container">
+      <div id="app" className="main-container">
         <h1 className="heading--main">Yahtzee Scoresheet</h1>
         <div className="button-container">
-          <button className="btn btn--green" onClick={this.addPlayers}>newd game</button>
+          <button className="btn btn--green" onClick={this.addPlayers}>new game</button>
           <button className="btn btn--yellow" onClick={this.restart}>Reset Game</button>
         </div>
         <div className="table-container hidden">
           <Table
             players={players}
-            onChange={(e, index) => this.handleChange(e, index)}
+            onClick={(e, index) => this.handleClick(e, index)}
           />
-        </div>        
+        </div>
+        <Popup 
+          scoreNumber={this.state.scoreNumber}
+          scoreMultiplier={this.state.scoreMulitplier}
+          onClick={this.handleClick}
+          onChange={this.handleChange}
+        />  
       </div>
     )
   }
