@@ -25,7 +25,7 @@ class popup extends Component {
         row = "yahtzee bonus";
         break;
       default:
-        row = row;  
+        // do nothing. 
     }
 
     if(inputs === "name") {
