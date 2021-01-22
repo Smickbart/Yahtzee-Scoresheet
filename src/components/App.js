@@ -153,6 +153,8 @@ class App extends React.Component {
           inputs = 3;
           scoreMultiplier = 100;
           break;
+          default:
+            inputs = 0;
       }
 
       this.setState({
@@ -211,6 +213,8 @@ class App extends React.Component {
         case "yahtzeeBonus":
           currentPlayer.score.lowerSection[7] = score;
           break;
+        default:
+          currentPlayer.score.lowerSection[0] = null;
       }
 
       let repIndex = players.findIndex(player => player.id === currentPlayer.id);
