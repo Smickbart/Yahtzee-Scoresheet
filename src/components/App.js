@@ -12,8 +12,10 @@ class App extends React.Component {
     this.state = {
       players: [],
       currentPlayer: {},
+      row: "",
       score: "",
-      scoreNumber: 0,
+      name: "",
+      inputs: 0,
       scoreMultiplier: 1
     }
   }
@@ -25,10 +27,10 @@ class App extends React.Component {
     players.push({ 
         name: "",
         score: {
-          upperSection: Array(6).fill(0), // These are the scores for ones through sixes.
+          upperSection: Array(6).fill(null), // These are the scores for ones through sixes.
           subtotal: null,
           upperBonus: null,
-          lowerSection: Array(8).fill(0), // scores for 3oak, 4oak, fh, sm.str, lg.str, ytz & chc.
+          lowerSection: Array(8).fill(null), // scores for 3oak, 4oak, fh, sm.str, lg.str, ytz & chc.
           total: null
         },
         id: "player#" + idNum
@@ -52,164 +54,201 @@ class App extends React.Component {
   }
 
   handleChange = (e) => {
-    const score = e.target.value;
+    const name = e.target.name;
+    let value = e.target.value
+
+    if(name === "score" && value !== "") {
+      value = Number(value);
+    } else if(name === "score" && value === "") {
+      value = null;
+    }
     
-    this.setState(state => state.score = score)
+    this.setState(state => state[name] = value);
   }
 
   handleClick(e, index) {
+    let currentPlayer   = this.state.currentPlayer;
+    const playerName    = this.state.name;
     const players = this.state.players.slice();
-    const currentPlayer = this.state.currentPlayer;
-    const i = index;
+    const score = this.state.score;
+    const row = this.state.row;
+
     const name = e.target.headers;
     const id = e.target.id;
-    const popup = document.querySelector(".popup").classList;
-    const score = this.state.score;
-    let scoreNumber = 0;
+    const i = index;
+
     let scoreMultiplier = 1;
+    let inputs = 0;
 
-    console.log(i);
+    const popup = document.querySelector(".popup").classList;
 
-    if(i) {
-      this.setState(state => state.currentPlayer = players[i]);
+    e.preventDefault();
+
+    // A current player is needed in the state because when the submit button on the popup is clicked it wipes the index variable so it won't update the correct player's score.
+    if(typeof(i) === "number") {
+      currentPlayer = players[i];
+      this.setState(state => state.currentPlayer = currentPlayer);
     }
 
+    // This just closes the popup.
     if(id === "close") {
       popup.add("hidden");
     }
-    
+
+    //This is for determining what boxes should appear in the popup for the user to input their score.    
     if(id !== "submit") {
       switch(name) {
-        // case "name":
-        //   players[i].name = value;
-        //   break;
+        case "name":
+          inputs = "name";
+          break;
         case "ones":
-          scoreNumber = 6;
+          inputs = 6;
           break;
         case "twos":
-          scoreNumber = 6;
+          inputs = 6;
           scoreMultiplier = 2;
           break;
         case "threes":
-          scoreNumber = 6;
+          inputs = 6;
           scoreMultiplier = 3;
           break;
         case "fours":
-          scoreNumber = 6;
+          inputs = 6;
           scoreMultiplier = 4;
           break;
         case "fives":
-          scoreNumber = 6;
+          inputs = 6;
           scoreMultiplier = 5;
           break;
         case "sixes":
-          scoreNumber = 6;
+          inputs = 6;
           scoreMultiplier = 6;
           break;
         case "3oak":
-          scoreNumber = 31;
+          inputs = 31;
           break;
         case "4oak":
-          scoreNumber = 31;
+          inputs = 31;
           break;
         case "fullHouse":
-          scoreNumber = 2;
+          inputs = 2;
           scoreMultiplier = 25;
           break;
         case "smlStraight":
-          scoreNumber = 2;
+          inputs = 2;
           scoreMultiplier = 30;
           break;
         case "lgStraight":
-          scoreNumber = 2;
+          inputs = 2;
           scoreMultiplier = 40;
           break;
         case "yahtzee":
-          scoreNumber = 2;
+          inputs = 2;
           scoreMultiplier = 50;
           break;
         case "chance":
-          scoreNumber = 31;
+          inputs = 31;
           break;
         case "yahtzeeBonus":
-          scoreNumber = 3;
+          inputs = 3;
           scoreMultiplier = 100;
           break;
       }
 
       this.setState({
-        scoreNumber: scoreNumber,
+        row: name,
+        inputs: inputs,
         scoreMulitplier: scoreMultiplier
       });
     }
     
-    if(id !== "close") {
+    if( id !== "close") {
       popup.remove("hidden");
     }
 
-    if(id === "submit") {
-      switch(name) {
-        // case "name":
-        //   players[i].name = value;
-        //   break;
+    //This if statement updates the score.
+    if(id === "submit" && (Number.isInteger(score) || score === null)) {
+      switch(row) {
         case "ones":
-          currentPlayer.score.upperSection[0] = Number(score);
+          currentPlayer.score.upperSection[0] = score;
           break;
         case "twos":
-          currentPlayer.score.upperSection[1] = Number(score);
+          currentPlayer.score.upperSection[1] = score;
           break;
         case "threes":
-          currentPlayer.score.upperSection[2] = Number(score);
+          currentPlayer.score.upperSection[2] = score;
           break;
         case "fours":
-          currentPlayer.score.upperSection[3] = Number(score);
+          currentPlayer.score.upperSection[3] = score;
           break;
         case "fives":
-          currentPlayer.score.upperSection[4] = Number(score);
+          currentPlayer.score.upperSection[4] = score;
           break;
         case "sixes":
-          currentPlayer.score.upperSection[5] = Number(score);
+          currentPlayer.score.upperSection[5] = score;
           break;
         case "3oak":
-          currentPlayer.score.lowerSection[0] = Number(score);
+          currentPlayer.score.lowerSection[0] = score;
           break;
         case "4oak":
-          currentPlayer.score.lowerSection[1] = Number(score);
+          currentPlayer.score.lowerSection[1] = score;
           break;
         case "fullHouse":
-          currentPlayer.score.lowerSection[2] = Number(score);
+          currentPlayer.score.lowerSection[2] = score;
           break;
         case "smlStraight":
-          currentPlayer.score.lowerSection[3] = Number(score);
+          currentPlayer.score.lowerSection[3] = score;
           break;
         case "lgStraight":
-          currentPlayer.score.lowerSection[4] = Number(score);
+          currentPlayer.score.lowerSection[4] = score;
           break;
         case "yahtzee":
-          currentPlayer.score.lowerSection[5] = Number(score);
+          currentPlayer.score.lowerSection[5] = score;
           break;
         case "chance":
-          currentPlayer.score.lowerSection[6] = Number(score);
+          currentPlayer.score.lowerSection[6] = score;
           break;
         case "yahtzeeBonus":
-          currentPlayer.score.lowerSection[7] = Number(score);
+          currentPlayer.score.lowerSection[7] = score;
           break;
       }
 
-      // let repIndex = players.findIndex(player => player.id === currentPlayer.id);
-      // players.splice(repIndex, 1, currentPlayer);
-      // this.setState(state => state.players = players);
+      let repIndex = players.findIndex(player => player.id === currentPlayer.id);
+      players.splice(repIndex, 1, currentPlayer);
 
-      // console.log(currentPlayer.score.upperSection[0]);
+      if(currentPlayer.score.upperSection.every(score => score === null) && currentPlayer.score.lowerSection.every(score => score === null)) {
+        currentPlayer.score.subtotal = null;
+        currentPlayer.score.upperBonus = null;
+        currentPlayer.score.total = null;
+      } else if(currentPlayer.score.upperSection.every(score => score === null) && currentPlayer.score.lowerSection.some(score => Number.isInteger(score))) {
+        currentPlayer.score.subtotal = null;
+        currentPlayer.score.upperBonus = null;
+        currentPlayer.score.total = currentPlayer.score.subtotal + currentPlayer.score.upperBonus + currentPlayer.score.lowerSection.reduce((t, n) => t + n);
+      } else {
+        currentPlayer.score.subtotal = currentPlayer.score.upperSection.reduce((t, n) => t + n);
+        currentPlayer.score.subtotal >= 63 ? currentPlayer.score.upperBonus = 35 : currentPlayer.score.upperBonus = 0;
+        currentPlayer.score.total = currentPlayer.score.subtotal + currentPlayer.score.upperBonus + currentPlayer.score.lowerSection.reduce((t, n) => t + n);
+      }
+      
+      this.setState(state => state.players = players);
+
+      popup.add("hidden");
+      const radios = document.querySelectorAll(".popup__radio");
+      radios.forEach(radio => radio.checked = false);
+
+    } else if(id === "submit" && row === "name") {
+      currentPlayer.name = playerName;
+
+      let repIndex = players.findIndex(player => player.id === currentPlayer.id);
+      players.splice(repIndex, 1, currentPlayer);
+
+      this.setState(state => state.players = players);
+      popup.add("hidden");
+
+    } else if(id === "submit") {
+      popup.add("hidden");
     }
-
-    // players[i].score.subtotal = upperSection.reduce((t, n) => t + n);
-
-    // players[i].score.subtotal >= 63 ? players[i].score.upperBonus = 35 : players[i].score.upperBonus = 0;
-    // players[i].score.total = players[i].score.subtotal + players[i].score.upperBonus + lowerSection.reduce((t, n) => t + n)
-
-    // this.setState(state => state.players = players);
-  }  
+  }
 
   render() {
     const players = this.state.players;
@@ -226,12 +265,14 @@ class App extends React.Component {
             onClick={(e, index) => this.handleClick(e, index)}
           />
         </div>
-        <Popup 
-          scoreNumber={this.state.scoreNumber}
+        <Popup
+          playerName={this.state.name}
+          inputs={this.state.inputs}
           scoreMultiplier={this.state.scoreMulitplier}
+          row={this.state.row}
           onClick={this.handleClick}
           onChange={this.handleChange}
-        />  
+        />
       </div>
     )
   }

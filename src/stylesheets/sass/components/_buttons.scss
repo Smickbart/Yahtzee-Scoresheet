@@ -25,6 +25,11 @@
     height: 4rem;
     border: 3px solid $color-blue-dark;
     margin-bottom: .5rem;
+
+    &--del {
+      width: auto;
+      border: 3px solid $color-red;
+    }
   }
 
   &--default {

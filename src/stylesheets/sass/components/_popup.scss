@@ -23,8 +23,9 @@
   }
 
   &__heading {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
+    text-transform: uppercase;
   }
 
   &__close {
@@ -45,12 +46,21 @@
     margin-top: 2rem;
   }
 
+  &__text-box {
+    font-size: 2rem;
+    max-width: 75%;
+  }
+
   &__radio {
     display: none;
 
     &:checked+.btn__score {
       background-color: $color-blue-dark;
       color: $font-color-light;
+    }
+
+    &:checked+.btn__score--del {
+      background-color: $color-red;
     }
   }
 }
