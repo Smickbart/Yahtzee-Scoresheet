@@ -8,6 +8,7 @@
 
 html {
     font-size: 62.5%;
+    height: 100vh;
 }
 
 body {
@@ -15,6 +16,7 @@ body {
     font-family: 'Roboto', sans-serif;
     padding: 1rem;
     background-color: $background-color;
+    height: 100%;
 }
 
 button {
@@ -35,4 +37,8 @@ th {
 td {
     border: 1px solid $color-white;
     border-top: none;
+}
+
+.root {
+    height: 100%;
 }

@@ -178,10 +178,10 @@ class Table extends Component {
     });
 
     return (
-        <table className="scoresheet">
+        <table className="scoresheet hidden">
           <thead>
             <tr className="scoresheet__row u-names">
-              <th className="scoresheet__heading u-names">Players</th>
+              <th className="scoresheet__heading">Players</th>
               {nameRow}
             </tr>
           </thead>
