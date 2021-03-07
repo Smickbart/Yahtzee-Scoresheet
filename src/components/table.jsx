@@ -181,7 +181,7 @@ class Table extends Component {
         <table className="scoresheet hidden">
           <thead>
             <tr className="scoresheet__row u-names">
-              <th className="scoresheet__heading">Players</th>
+              <th className="scoresheet__heading scoresheet__heading--player">Players</th>
               {nameRow}
             </tr>
           </thead>

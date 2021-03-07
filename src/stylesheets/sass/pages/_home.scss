@@ -10,25 +10,32 @@
     padding: .5rem 0;
 
     text-transform: uppercase;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    background-color: $color-blue-dark;
+    z-index: 1;
 
     &--row {
       border-top: none;
     }
 
+    &--player {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
   }
 
   &__name {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     width: 8rem;
     margin: 0 1rem;
   }
 
   &__cell {
     min-width: 10rem;
-    max-width: 50%;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
 
@@ -45,7 +52,7 @@
   }
 }
 
-.scrolly {
+.scoresheet-container {
   height: 100%;
   overflow-x: scroll;
 }
@@ -53,4 +60,18 @@
 .button-container {
   padding-bottom: 1rem;
   text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .scoresheet {
+    margin: 0 auto;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .scoresheet {
+    margin: 0 auto;
+    width: 66%;
+  }
 }

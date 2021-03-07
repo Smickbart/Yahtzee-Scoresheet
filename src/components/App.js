@@ -22,7 +22,14 @@ class App extends React.Component {
 
   addPlayers(e) {
     const players = this.state.players.slice();
-    let idNum = players.length + 1;
+
+    const generateId = () => {
+      let number = Math.floor(Math.random() * 1000000 +1);
+      if(players.every(player => player.id !== number)) {
+        return number;
+      }
+      generateId();
+    }
       
     players.push({ 
         name: "",
@@ -33,24 +40,39 @@ class App extends React.Component {
           lowerSection: Array(8).fill(null), // scores for 3oak, 4oak, fh, sm.str, lg.str, ytz & chc.
           total: null
         },
-        id: "player#" + idNum
+        id: generateId()
       });
     
     this.setState(state => state.players = players);
 
     document.querySelector(".scoresheet").classList.remove("hidden");
     document.querySelector(".btn--green").innerHTML = "add player";
+
+    console.log(this.state.players);
   }
 
   restart(e) {
+    const id = e.target.id;
     const players = this.state.players.slice();
     const allPlayers = players.length;
 
-    document.querySelector(".scoresheet").classList.add("hidden");
-    document.querySelector(".btn--green").innerHTML = "new game";
-    players.splice(0, allPlayers);
+    if(id === "resScores") {
+      players.forEach(player => {
+        player.score = {
+          upperSection: Array(6).fill(null),
+          subtotal: null,
+          upperBonus: null,
+          lowerSection: Array(8).fill(null),
+          total: null
+        }
+      });    
+  
+      
+    } else {
+      players.splice(0, allPlayers);
+    }
 
-    this.setState(state => state.players = players);
+    this.setState(state => state.players = players);    
   }
 
   handleChange = (e) => {
@@ -81,6 +103,7 @@ class App extends React.Component {
     let inputs = 0;
 
     const popup = document.querySelector(".popup").classList;
+    const deleteButton = document.getElementById("delete").classList;
 
     e.preventDefault();
 
@@ -166,6 +189,7 @@ class App extends React.Component {
     
     if( id !== "close") {
       popup.remove("hidden");
+      deleteButton.add("hidden")
     }
 
     //This if statement updates the score.
@@ -243,12 +267,19 @@ class App extends React.Component {
     } else if(id === "submit" && row === "name") {
       currentPlayer.name = playerName;
 
-      let repIndex = players.findIndex(player => player.id === currentPlayer.id);
-      players.splice(repIndex, 1, currentPlayer);
+      let replaceIndex = players.findIndex(player => player.id === currentPlayer.id);
+      players.splice(replaceIndex, 1, currentPlayer);
 
       this.setState(state => state.players = players);
       popup.add("hidden");
 
+    } else if(id === "delete" && row === "name") {
+      let deletePlayerIndex = players.findIndex(player => player.id === currentPlayer.id);
+      players.splice(deletePlayerIndex, 1);
+
+      this.setState(state => state.players = players);
+      popup.add("hidden");
+      deleteButton.add("hidden");
     } else if(id === "submit") {
       popup.add("hidden");
     }
@@ -261,9 +292,10 @@ class App extends React.Component {
         <h1 className="heading--main">Yahtzee Scoresheet</h1>
         <div className="button-container">
           <button className="btn btn--green" onClick={this.addPlayers}>new game</button>
-          <button className="btn btn--yellow" onClick={this.restart}>Reset Game</button>
+          <button id="resScores" className="btn btn--yellow" onClick={this.restart}>Reset Scores</button>
+          <button id="resGame" className="btn btn--red" onClick={this.restart}>Reset Game</button>
         </div>
-        <div className="scrolly">
+        <div className="scoresheet-container">
           <Table
             players={players}
             onClick={(e, index) => this.handleClick(e, index)}

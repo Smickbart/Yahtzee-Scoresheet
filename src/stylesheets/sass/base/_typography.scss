@@ -1,10 +1,19 @@
 .heading {
   
   &--main {
-    font-size: 3rem;
+    font-size: 2rem;
     color: $color-blue;
     text-align: center;
 
-    padding: 2rem 0;
+    padding: 1rem 0;
+  }
+}
+
+@media only screen and (min-width: 481px) {
+  .heading {
+    &--main {
+      font-size: 4rem;
+      padding: 1rem 0;
+    }
   }
 }

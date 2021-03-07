@@ -3,8 +3,7 @@
 *::before {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html {
@@ -13,11 +12,10 @@ html {
 }
 
 body {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   padding: 1rem;
-  background-color: #eaeffa;
+  background-color: #fff;
   height: 100%;
 }
 
@@ -46,17 +44,24 @@ td {
 }
 
 .heading--main {
-  font-size: 3rem;
+  font-size: 2rem;
   color: #2e45a3;
   text-align: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
+}
+
+@media only screen and (min-width: 481px) {
+  .heading--main {
+    font-size: 4rem;
+    padding: 1rem 0;
+  }
 }
 
 .btn {
   display: inline-block;
   border-radius: .5rem;
   padding: .8rem;
-  margin: 0 .5rem;
+  margin: .5rem .5rem;
   font-size: 1.3rem;
   text-transform: uppercase;
   color: #f2f2f2;
@@ -65,13 +70,11 @@ td {
 
 .btn:hover {
   cursor: pointer;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .btn:active {
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .btn__score {
@@ -118,14 +121,14 @@ td {
   height: 100vh;
   width: 100%;
   background-color: rgba(0, 61, 102, 0.5);
+  z-index: 2;
 }
 
 .popup__content {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 1rem 2rem;
   margin: 0 auto;
@@ -179,6 +182,13 @@ td {
   background-color: #bd2a33;
 }
 
+@media only screen and (min-width: 481px) {
+  .popup__content {
+    width: auto;
+    max-width: 50%;
+  }
+}
+
 .scoresheet {
   height: 80%;
   color: #f2f2f2;
@@ -186,30 +196,36 @@ td {
 }
 
 .scoresheet__heading {
-  position: -webkit-sticky;
   position: sticky;
   left: 0;
   min-width: 11rem;
   padding: .5rem 0;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  background-color: #003d66;
+  z-index: 1;
 }
 
 .scoresheet__heading--row {
   border-top: none;
 }
 
+.scoresheet__heading--player {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
 .scoresheet__name {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   width: 8rem;
   margin: 0 1rem;
 }
 
 .scoresheet__cell {
   min-width: 10rem;
-  max-width: 50%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -219,14 +235,13 @@ td {
 }
 
 .scoresheet__cell--names {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background-color: #003d66;
   font-size: 1.5rem;
 }
 
-.scrolly {
+.scoresheet-container {
   height: 100%;
   overflow-x: scroll;
 }
@@ -234,6 +249,20 @@ td {
 .button-container {
   padding-bottom: 1rem;
   text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .scoresheet {
+    margin: 0 auto;
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .scoresheet {
+    margin: 0 auto;
+    width: 66%;
+  }
 }
 
 .u-names {

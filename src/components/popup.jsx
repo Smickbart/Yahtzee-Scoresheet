@@ -29,13 +29,14 @@ class popup extends Component {
     }
 
     if(inputs === "name") {
+      document.getElementById("delete").classList.remove("hidden");
       scoreButtons.push(
         <input type="text" id="biggyhits" className="popup__text-box" onChange={this.props.onChange} name="name" value={playerName} maxlength="12"/>
       );
     } else {
       for(let i = 0; i < inputs; i++) {
         if(inputs > 6) {
-          if(i > 0 && i < 6) {
+          if(i > 0 && i < 5) {
             continue;
           }
         }
@@ -60,6 +61,7 @@ class popup extends Component {
           <form className="popup__scores">
             {scoreButtons.map(item => item)}      
             <button type="submit" id="submit" className="btn btn--default btn--submit" onClick={this.props.onClick}>OK</button>
+            <button type="button" id="delete" className="btn btn--red hidden" onClick={this.props.onClick}>Delete player</button>
           </form>
         </div>
       </div>
